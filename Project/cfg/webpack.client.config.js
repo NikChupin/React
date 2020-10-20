@@ -2,7 +2,7 @@ const path = require('path');
 
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV === 'development';
-const PROD = NODE_ENV === 'production';
+const IS_PROD = NODE_ENV === 'production';
 
 function setupDevtool() {
     if (IS_DEV) return 'eval';
@@ -10,10 +10,10 @@ function setupDevtool() {
 }
 
 module.exports = {
-    resolve: {
-        extensions: ['.jsx','.js','.ts','.tsx','.json']
-    },
     mode: NODE_ENV ? NODE_ENV : 'development',
+    resolve: {
+        extensions: ['.jsx','.js','.json']
+    },
     entry: path.resolve(__dirname, '../src/client/index.jsx'),
     output: {
         path: path.resolve(__dirname, '../dist/client'),
@@ -21,8 +21,9 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.[tj]sx?/,
+            test: /\.[jt]sx?$/,
             use: ['ts-loader']
         }]
     },
+    devtool: setupDevtool(),
 };

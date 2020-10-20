@@ -9,7 +9,7 @@ compiler.run((err) => {
     if (err) {
         console.log('Compilation failed: ', err);
     }
-    compiler.watch({} ,(err) => {
+    compiler.watch({},(err) => {
     if (err) {
         console.log('Compilation failed: ', err);
     } 
